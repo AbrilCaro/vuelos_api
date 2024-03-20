@@ -1,9 +1,13 @@
 package codeki.vuelos_api.controller;
 
+import codeki.vuelos_api.Services.FlightService;
 import codeki.vuelos_api.modelo.Flight;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/flights")
@@ -11,10 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class FlightController {
 
-    Flight flight1 = new Flight();
+    @Autowired
+    private FlightService flightService;
 
     @GetMapping
-    public Flight hola() {
-        return flight1;
+    public List<Flight> hola() {
+
+        return flightService.listarFlights();
     }
 }
